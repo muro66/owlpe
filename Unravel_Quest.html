@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unravel Quest: An Infographic on the Art of Thinking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: #F8F9FA;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            line-height: 1;
+            color: #0077B6;
+        }
+    </style>
+</head>
+<body class="bg-[#F0F8FF] text-[#03045E]">
+
+    <!-- 
+    Palette Selection: "Brilliant Blues" (#004AAD, #0077B6, #90E0EF, #CAF0F8) with a dark text color for contrast.
+
+    Narrative & Structure Plan:
+    1. Introduction: Hook the user with the core concept of "Unravel Quest" using a large, impactful title.
+    2. The Three Modes: Detail the Acolyte, Vanguard, and Sage modes in a three-column layout. Use Radar charts to visualize the conceptual strengths of each mode.
+    3. The Process Flow: Illustrate the cyclical relationship between the modes using a simple, clear flowchart built with HTML/CSS.
+    4. The Ecosystem: Place the modes within the larger context of "Project Baobab" using a simple hierarchical diagram.
+    5. Conclusion: Summarize the journey of knowledge creation.
+
+    Visualization Choices:
+    - Intro (Data: Core Concept): Goal: Inform. Visualization: Large, bold text. Justification: Creates a strong initial impact. Library/Method: HTML/CSS. NO SVG.
+    - Three Modes (Data: Mode Attributes): Goal: Compare. Visualization: Radar Charts. Justification: Excellent for comparing qualitative strengths across several categories. Library/Method: Chart.js (Canvas). NO SVG.
+    - Process Flow (Data: Mode Interaction): Goal: Organize. Visualization: HTML/CSS Flowchart. Justification: Clearly shows a process sequence without requiring images or complex libraries. Library/Method: HTML/CSS with Tailwind. NO SVG, NO MERMAID JS.
+    - Ecosystem (Data: Hierarchy): Goal: Organize. Visualization: HTML/CSS Hierarchical Diagram. Justification: Simple and effective for showing container/contained relationships. Library/Method: HTML/CSS with Tailwind. NO SVG.
+
+    Constraint Confirmation:
+    - NO Mermaid JS was used.
+    - NO SVG was used. All visuals are pure HTML/CSS or rendered on HTML Canvas by Chart.js.
+    -->
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl font-black text-[#004AAD] tracking-tight">Unravel Quest</h1>
+            <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto">複雑な情報や課題の奥に潜む本質を「解きほぐし」、そこから新たな知を「紡ぎ出す」探求の旅へようこそ。</p>
+        </header>
+
+        <main>
+            <section id="modes" class="my-16">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">三つの思考モード</h2>
+                    <p class="mt-2 text-md max-w-2xl mx-auto">Unravel Questでは、三つの思考モードを柔軟に切り替えることで、多角的かつ深い探求を可能にします。各モードは独自の強みを持ち、探求の異なる段階でその力を発揮します。</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 flex flex-col">
+                        <h3 class="text-2xl font-bold text-[#004AAD]">Acolyte Mode</h3>
+                        <p class="mt-2 text-sm font-semibold">アコライト・モード</p>
+                        <div class="my-4">
+                            <p><strong>役割:</strong> 純粋な好奇心と素朴な問いを原動力に探求の第一歩を踏み出し、既存の常識に囚われず新たな可能性の糸口を探ります。</p>
+                        </div>
+                        <div class="chart-container mt-auto">
+                            <canvas id="acolyteChart"></canvas>
+                        </div>
+                         <p class="text-xs text-center mt-2 text-gray-500">アコライトは「好奇心」と「観察」に優れ、新たな問いを発見します。</p>
+                    </div>
+
+                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 flex flex-col">
+                        <h3 class="text-2xl font-bold text-[#004AAD]">Vanguard Mode</h3>
+                        <p class="mt-2 text-sm font-semibold">ヴァンガード・モード</p>
+                        <div class="my-4">
+                            <p><strong>役割:</strong> 未開の領域や困難な課題に対し、果敢に問いを投げかけ、既存の枠組みにとらわれずに新たな解決策の道筋を模索します。</p>
+                        </div>
+                        <div class="chart-container mt-auto">
+                            <canvas id="vanguardChart"></canvas>
+                        </div>
+                         <p class="text-xs text-center mt-2 text-gray-500">ヴァンガードは「行動力」と「突破力」を武器に、困難な課題に挑みます。</p>
+                    </div>
+
+                    <div class="bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-6 flex flex-col">
+                        <h3 class="text-2xl font-bold text-[#004AAD]">Sage Mode</h3>
+                        <p class="mt-2 text-sm font-semibold">セージ・モード</p>
+                        <div class="my-4">
+                             <p><strong>役割:</strong> 複雑な事象から普遍的な意味を深く掘り起こし、散在する洞察や知見を統合し、体系的な「やさしい構造」として再構築します。</p>
+                        </div>
+                        <div class="chart-container mt-auto">
+                            <canvas id="sageChart"></canvas>
+                        </div>
+                        <p class="text-xs text-center mt-2 text-gray-500">セージは「統合力」と「構造化」によって、知を知恵へと昇華させます。</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="flow" class="my-24">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">知を紡ぐプロセス</h2>
+                    <p class="mt-2 text-md max-w-2xl mx-auto">これらのモードは独立しているのではなく、相互作用しながら知の探求を深化させます。一つの問いから始まり、行動を経て、新たな知恵として体系化される、ダイナミックなサイクルが生まれます。</p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-0 text-center">
+                    <div class="bg-white rounded-xl shadow-md p-6 w-60">
+                        <p class="text-2xl">🧐</p>
+                        <h4 class="font-bold">Acolyte</h4>
+                        <p class="text-sm">問いを発見する</p>
+                    </div>
+
+                    
+                    <div class="flow-arrow text-3xl transform md:rotate-0 rotate-90 md:mx-4 my-2">→</div>
+
+
+                    <div class="bg-white rounded-xl shadow-md p-6 w-60">
+                        <p class="text-2xl">🚀</p>
+                        <h4 class="font-bold">Vanguard</h4>
+                        <p class="text-sm">解決策を模索する</p>
+                    </div>
+
+                 
+                    <div class="flow-arrow text-3xl transform md:rotate-0 rotate-90 md:mx-4 my-2">→</div>
+
+
+                    <div class="bg-white rounded-xl shadow-md p-6 w-60">
+                        <p class="text-2xl">🦉</p>
+                        <h4 class="font-bold">Sage</h4>
+                        <p class="text-sm">知恵を構造化する</p>
+                    </div>
+                    
+                    <div class="hidden md:flex items-center justify-center flow-arrow ml-4">
+                        <div class="w-24 border-t-4 border-dashed border-[#0077B6] relative">
+                             <span class="absolute -right-2 -top-3 text-[#0077B6]">⟳</span>
+                        </div>
+                    </div>
+                </div>
+                 <p class="text-center text-sm text-gray-600 mt-6">そして、構造化された知恵は、再び新たな問いの出発点となります。</p>
+            </section>
+
+            <section id="ecosystem" class="my-24">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold">エコシステム: Project Baobab</h2>
+                    <p class="mt-2 text-md max-w-2xl mx-auto">Unravel Questの思考モードは、より大きな知の体系である「Project Baobab」の一部です。このプロジェクトは、知識の持続的な成長を促す土壌となります。</p>
+                </div>
+
+                <div class="max-w-2xl mx-auto bg-white/50 p-8 rounded-2xl shadow-lg border border-[#90E0EF]">
+                    <div class="text-center border-4 border-[#004AAD] p-6 rounded-xl">
+                         <h3 class="text-2xl font-bold">Project Baobab</h3>
+                         <p class="text-sm">知の体系と持続的成長の場</p>
+                         <p class="text-3xl mt-2">🌳</p>
+
+                         <div class="mt-6 p-4 border-t-2 border-dashed border-[#0077B6]">
+                            <h4 class="font-bold mb-4">Owl of Baobab (守護者)</h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                <div class="bg-[#CAF0F8] p-3 rounded-lg"><p>Acolyte Mode</p></div>
+                                <div class="bg-[#90E0EF] p-3 rounded-lg"><p>Vanguard Mode</p></div>
+                                <div class="bg-[#00B4D8] p-3 rounded-lg text-white"><p>Sage Mode</p></div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+                <p class="text-center text-sm text-gray-600 mt-6">「Owl of Baobab」は知を観察し、導き、管理・守護する役割を担っています。</p>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-16 mb-8">
+            <p class="text-sm text-gray-500">&copy; 2025 Unravel Quest Infographic. All concepts are for illustrative purposes.</p>
+        </footer>
+    </div>
+
+    <script>
+        const tooltipTitleCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const radarChartOptions = {
+            maintainAspectRatio: false,
+            scales: {
+                r: {
+                    angleLines: {
+                        color: 'rgba(3, 4, 94, 0.2)'
+                    },
+                    grid: {
+                        color: 'rgba(3, 4, 94, 0.2)'
+                    },
+                    pointLabels: {
+                        color: '#03045E',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    ticks: {
+                        backdropColor: 'rgba(255, 255, 255, 0.75)',
+                        stepSize: 2,
+                        max: 10,
+                        min: 0
+                    }
+                }
+            },
+            ...tooltipTitleCallback
+        };
+
+        const acolyteData = {
+            labels: ['好奇心', '観察力', '質問力', '突破力', '行動力', '構造化', '統合力'],
+            datasets: [{
+                label: 'Acolyte',
+                data: [9, 8, 7, 3, 4, 2, 3],
+                fill: true,
+                backgroundColor: 'rgba(144, 224, 239, 0.4)',
+                borderColor: '#0077B6',
+                pointBackgroundColor: '#0077B6',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#0077B6'
+            }]
+        };
+
+        const vanguardData = {
+            labels: ['好奇心', '観察力', '質問力', '突破力', '行動力', '構造化', '統合力'],
+            datasets: [{
+                label: 'Vanguard',
+                data: [5, 4, 6, 9, 9, 4, 5],
+                fill: true,
+                backgroundColor: 'rgba(0, 180, 216, 0.4)',
+                borderColor: '#004AAD',
+                pointBackgroundColor: '#004AAD',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#004AAD'
+            }]
+        };
+
+        const sageData = {
+            labels: ['好奇心', '観察力', '質問力', '突破力', '行動力', '構造化', '統合力'],
+            datasets: [{
+                label: 'Sage',
+                data: [4, 6, 5, 5, 6, 9, 9],
+                fill: true,
+                backgroundColor: 'rgba(0, 74, 173, 0.4)',
+                borderColor: '#03045E',
+                pointBackgroundColor: '#03045E',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#03045E'
+            }]
+        };
+
+        // 遅延描画例
+        setTimeout(() => {
+            new Chart(document.getElementById('acolyteChart'), { type: 'radar', data: acolyteData, options: radarChartOptions });
+        }, 500);
+        setTimeout(() => {
+            new Chart(document.getElementById('vanguardChart'), { type: 'radar', data: vanguardData, options: radarChartOptions });
+        }, 1000);
+        setTimeout(() => {
+            new Chart(document.getElementById('sageChart'), { type: 'radar', data: sageData, options: radarChartOptions });
+        }, 1500);
+
+    </script>
+</body>
+</html>
